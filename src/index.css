@@ -1,13 +1,293 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font classes */
+.noto-color-emoji {
+  font-family: "Noto Color Emoji", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cal-sans {
+  font-family: "Cal Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Define CSS custom properties for color fallbacks */
+:root {
+  --cv-dark: #3F4F44;    /* Grid elements */
+  --cv-green: #DCD7C9;   /* Text */
+  --cv-light-green: #D4C9BE; /* Titles */
+  --cv-cream: #2C3930;   /* Background */
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: "Cal Sans", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--cv-cream);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Ensure Tailwind classes are available */
+.bg-cv-cream { background-color: var(--cv-cream); }
+.bg-cv-dark { background-color: var(--cv-dark); }
+.bg-cv-green { background-color: var(--cv-green); }
+.bg-cv-light-green { background-color: var(--cv-light-green); }
+.text-cv-cream { color: var(--cv-cream); }
+.text-cv-dark { color: var(--cv-dark); }
+.text-cv-green { color: var(--cv-green); }
+.text-cv-light-green { color: var(--cv-light-green); }
+
+/* Make content fit viewport with proper scrolling */
+html, body, #root {
+  height: 100%;
+}
+
+/* Enable scrolling on mobile devices */
+@media (max-width: 992px) {
+  html, body, #root {
+    overflow-y: auto;
+    height: auto;
+    min-height: 100%;
+  }
+}
+
+/* Responsive text sizing */
+html {
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+/* Three-column grid layout with full-height first column */
+.cv-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-auto-rows: auto;
+  height: calc(100vh - 120px); /* Account for header and padding */
+  gap: 16px; /* Add gap between grid elements */
+  max-width: 1600px; /* Prevent extreme stretching on ultra-wide screens */
+  margin: 0 auto; /* Center on very large screens */
+}
+
+/* Grid item placements */
+.profile-img {
+  grid-column: 1;
+  grid-row: 1 / span 5; /* Span all rows */
+  height: 100%;
+}
+
+.profile-section {
+  grid-column: 2;
+  grid-row: 1;
+  height: auto;
+}
+
+.experience-section {
+  grid-column: 2;
+  grid-row: 2;
+  height: auto;
+}
+
+.education-section {
+  grid-column: 3;
+  grid-row: 1;
+  height: auto;
+}
+
+.skills-section {
+  grid-column: 3;
+  grid-row: 2;
+  height: auto;
+}
+
+.certifications-section {
+  grid-column: 3;
+  grid-row: 3;
+  height: auto;
+}
+
+/* Make the image fill its container */
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Make all grid cells maintain their natural height */
+.cv-grid > div {
+  height: auto;
+  min-height: min-content;
+  position: relative;
+  border-radius: 8px; /* Add rounded corners for better aesthetics */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Noise texture and blur effects for grid elements */
+.noise-bg {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate; /* Create a new stacking context */
+}
+
+.noise-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url("../public/noise.jpg"); /* Use the noise.jpg image */
+  background-repeat: repeat;
+  background-size: cover; /* Adjust size as needed for the right grain density */
+  opacity: 0.5; /* Adjusted opacity for the actual image */
+  z-index: -1;
+  pointer-events: none;
+  mix-blend-mode: overlay; /* Changed to soft-light for better integration */
+}
+
+/* Apply blur to soften the noise */
+.blur-bg {
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+}
+
+/* Apply noise and blur effects to grid elements */
+.profile-section,
+.experience-section,
+.education-section,
+.skills-section,
+.certifications-section {
+  @extend .noise-bg;
+  @extend .blur-bg;
+}
+
+/* Add a subtle inner glow to elements */
+.inner-glow {
+  box-shadow: inset 0 0 20px rgba(220, 215, 201, 0.05);
+}
+
+/* Apply these effects to each grid container */
+.bg-cv-dark {
+  @extend .noise-bg;
+  @extend .blur-bg;
+  @extend .inner-glow;
+}
+
+/* Make layout responsive */
+@media (max-width: 1200px) {
+  .cv-grid {
+    grid-template-columns: 1fr 1.5fr 1fr; /* Slightly adjust column proportions */
+    gap: 14px;
+  }
+}
+
+@media (max-width: 992px) {
+  .cv-grid {
+    grid-template-columns: 1fr 1fr; /* Switch to two columns */
+    height: auto;
+    min-height: calc(100vh - 120px);
+  }
+  
+  .profile-img {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+  }
+  
+  .profile-section {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  
+  .experience-section {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  
+  .education-section {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  
+  .skills-section {
+    grid-column: 1 / span 2;
+    grid-row: 4;
+  }
+  
+  .certifications-section {
+    grid-column: 1 / span 2;
+    grid-row: 5;
+  }
+}
+
+@media (max-width: 768px) {
+  .cv-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 12px;
+    padding-bottom: 20px; /* Add space at bottom for better scrolling */
+  }
+  
+  .profile-img {
+    grid-column: 1;
+    grid-row: 1;
+    height: 40vh; /* Slightly reduced from 50vh to give more space to content */
+    min-height: 250px; /* Ensure minimum height on smaller devices */
+  }
+  
+  .profile-section,
+  .experience-section,
+  .education-section,
+  .skills-section,
+  .certifications-section {
+    grid-column: 1;
+  }
+  
+  .profile-section {
+    grid-row: 2;
+  }
+  
+  .experience-section {
+    grid-row: 3;
+  }
+  
+  .education-section {
+    grid-row: 4;
+  }
+  
+  .skills-section {
+    grid-row: 5;
+  }
+  
+  .certifications-section {
+    grid-row: 6;
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-grid {
+    gap: 10px;
+    
+    /* Improve scrolling experience on smaller phones */
+    min-height: auto;
+    margin-bottom: 40px; /* Add more space at the bottom for scrolling momentum */
+  }
+  
+  .profile-img {
+    height: 30vh; /* Even smaller on mobile phones */
+    min-height: 200px;
+  }
+  
+  html {
+    font-size: clamp(12px, 3vw, 14px); /* Smaller text on very small screens */
+  }
+  
+  /* Force scrolling to be enabled */
+  html, body, #root {
+    overflow-y: auto !important;
+  }
 }

@@ -1,25 +1,119 @@
-import logo from './logo.svg';
+import './index.css';
 import './App.css';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import AnimatedIntro from './components/AnimatedIntro';
+import Profile from './components/profile';
+import Education from './components/Education';
+import Certifications from './components/Certifications';
+import Experience from './components/Experience';
+import Skills from './components/Skills';
+import ProfileImages from './components/ProfileImages';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+  // Always start with showing the intro animation
+  const [showIntro, setShowIntro] = useState(true);
+
+  // Handler for when animation completes
+  const handleAnimationComplete = () => {
+    setShowIntro(false);
+  };
+
+  // Animation variants for grid items
+  const gridItemVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.9 },
+    visible: custom => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        delay: custom * 0.1, 
+        ease: "easeOut"
+      }
+    })
+  };
+
+  // Render the static layout if intro is not showing
+  if (!showIntro) {
+    return (
+      <div className="bg-cv-cream min-h-screen p-5">
+        <motion.h1 
+          className="text-4xl font-bold text-orange-500 mb-5 text-center font-cal"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          Hi my name is Ibrahim Dammak
+        </motion.h1>
+        <div className="cv-grid w-full">
+          {/* Profile Image */}
+          <motion.div 
+            className="profile-img"
+            variants={gridItemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={0}
+          >
+            <ProfileImages position="top" />
+          </motion.div>
+          
+          <motion.div 
+            className="profile-section noise-bg blur-bg inner-glow"
+            variants={gridItemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={1}
+          >
+            <Profile />
+          </motion.div>
+          
+          <motion.div 
+            className="experience-section noise-bg blur-bg inner-glow"
+            variants={gridItemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={2}
+          >
+            <Experience />
+          </motion.div>
+          
+          <motion.div 
+            className="education-section noise-bg blur-bg inner-glow"
+            variants={gridItemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={3}
+          >
+            <Education />
+          </motion.div>
+          
+          <motion.div 
+            className="skills-section noise-bg blur-bg inner-glow"
+            variants={gridItemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={4}
+          >
+            <Skills />
+          </motion.div>
+          
+          <motion.div 
+            className="certifications-section noise-bg blur-bg inner-glow"
+            variants={gridItemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={5}
+          >
+            <Certifications />
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show animated intro
+  return <AnimatedIntro onComplete={handleAnimationComplete} />;
 }
 
 export default App;
