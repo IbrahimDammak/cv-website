@@ -9,6 +9,7 @@ import Certifications from './components/Certifications';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
 import ProfileImages from './components/ProfileImages';
+import VisitorCounter from './components/VisitorCounter';
 
 function App() {
   // Always start with showing the intro animation
@@ -46,6 +47,7 @@ function App() {
         >
           Hi my name is Ibrahim Dammak
         </motion.h1>
+        
         <div className="cv-grid w-full">
           {/* Profile Image */}
           <motion.div 
@@ -106,6 +108,17 @@ function App() {
             custom={5}
           >
             <Certifications />
+          </motion.div>
+          
+          {/* Add visitor counter at the bottom */}
+          <motion.div 
+            className="col-span-full"
+            variants={gridItemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={6}
+          >
+            <VisitorCounter />
           </motion.div>
         </div>
       </div>
