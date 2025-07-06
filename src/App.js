@@ -9,6 +9,7 @@ import Certifications from './components/Certifications';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
 import ProfileImages from './components/ProfileImages';
+import GitHubActivity from './components/GitHubActivity';
 import VisitorCounter from './components/VisitorCounter';
 
 function App() {
@@ -61,7 +62,7 @@ function App() {
           </motion.div>
           
           <motion.div 
-            className="profile-section noise-bg blur-bg inner-glow"
+            className="profile-section"
             variants={gridItemVariants}
             initial="hidden"
             animate="visible"
@@ -71,7 +72,7 @@ function App() {
           </motion.div>
           
           <motion.div 
-            className="experience-section noise-bg blur-bg inner-glow"
+            className="experience-section"
             variants={gridItemVariants}
             initial="hidden"
             animate="visible"
@@ -80,43 +81,54 @@ function App() {
             <Experience />
           </motion.div>
           
+          {/* GitHub Activity Section */}
           <motion.div 
-            className="education-section noise-bg blur-bg inner-glow"
+            className="github-activity-section"
             variants={gridItemVariants}
             initial="hidden"
             animate="visible"
             custom={3}
           >
-            <Education />
+            <GitHubActivity />
           </motion.div>
           
           <motion.div 
-            className="skills-section noise-bg blur-bg inner-glow"
+            className="education-section"
             variants={gridItemVariants}
             initial="hidden"
             animate="visible"
             custom={4}
           >
-            <Skills />
+            <Education />
           </motion.div>
           
           <motion.div 
-            className="certifications-section noise-bg blur-bg inner-glow"
+            className="skills-section"
             variants={gridItemVariants}
             initial="hidden"
             animate="visible"
             custom={5}
           >
-            <Certifications />
+            <Skills />
           </motion.div>
           
-          {/* Add visitor counter at the bottom */}
           <motion.div 
-            className="col-span-full"
+            className="certifications-section"
             variants={gridItemVariants}
             initial="hidden"
             animate="visible"
             custom={6}
+          >
+            <Certifications />
+          </motion.div>
+          
+          {/* Visitor Counter */}
+          <motion.div 
+            className="visitor-counter-section"
+            variants={gridItemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={7}
           >
             <VisitorCounter />
           </motion.div>

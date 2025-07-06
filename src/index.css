@@ -92,6 +92,19 @@ html {
   height: auto;
 }
 
+.github-activity-section {
+  grid-column: 2;
+  grid-row: 3;
+  height: auto;
+}
+
+/* Add specific style for visitor counter section */
+.visitor-counter-section {
+  grid-column: 1 / -1; /* Make it span all columns */
+  margin-top: 16px;
+}
+
+/* Education, Skills, Certifications placements */
 .education-section {
   grid-column: 3;
   grid-row: 1;
@@ -208,9 +221,14 @@ html {
     grid-row: 2;
   }
   
+  .github-activity-section {
+    grid-column: 2;
+    grid-row: 4;
+  }
+  
   .education-section {
     grid-column: 2;
-    grid-row: 3;
+    grid-row: 5;
   }
   
   .skills-section {
@@ -255,16 +273,25 @@ html {
     grid-row: 3;
   }
   
-  .education-section {
+  .github-activity-section {
+    grid-column: 1;
     grid-row: 4;
   }
   
-  .skills-section {
+  .education-section {
     grid-row: 5;
   }
   
-  .certifications-section {
+  .skills-section {
     grid-row: 6;
+  }
+  
+  .certifications-section {
+    grid-row: 7;
+  }
+  
+  .visitor-counter-section {
+    grid-row: 8;
   }
 }
 
