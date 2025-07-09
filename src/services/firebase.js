@@ -20,8 +20,6 @@ const database = getDatabase(app);
 // Visitor counter functions
 export const incrementVisitorCount = async () => {
   try {
-    const visitorCountRef = ref(database, 'visitorCount');
-    
     // Use Firebase's atomic increment operation
     await update(ref(database), {
       visitorCount: increment(1)
@@ -179,3 +177,4 @@ export const getAllSessionData = async (limit = 50) => {
     return {};
   }
 };
+
