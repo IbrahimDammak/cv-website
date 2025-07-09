@@ -1,6 +1,6 @@
 import './index.css';
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AnimatedIntro from './components/AnimatedIntro';
@@ -12,43 +12,9 @@ import Skills from './components/Skills';
 import ProfileImages from './components/ProfileImages';
 import GitHubActivity from './components/GitHubActivity';
 import VisitorCounter from './components/VisitorCounter';
-import { useUserTracking } from './hooks/useUserTracking';
 import Dashboard from './components/Dashboard/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
-// Move TrackingDebug component outside of App component
-const TrackingDebug = ({ getStats }) => {
-  const [stats, setStats] = useState({});
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setStats(getStats());
-    }, 5000);
-    
-    return () => clearInterval(interval);
-  }, [getStats]);
-  
-  if (process.env.NODE_ENV !== 'development') return null;
-  
-  return (
-    <div style={{
-      position: 'fixed',
-      top: 10,
-      right: 10,
-      background: 'rgba(0,0,0,0.8)',
-      color: 'white',
-      padding: '10px',
-      borderRadius: '5px',
-      fontSize: '12px',
-      zIndex: 9999
-    }}>
-      <div>Session: {stats.sessionId?.slice(-8)}</div>
-      <div>Duration: {Math.floor((stats.duration || 0) / 1000)}s</div>
-      <div>Cursor moves: {stats.cursorMovements || 0}</div>
-      <div>Active: {stats.isActive ? '✓' : '✗'}</div>
-    </div>
-  );
-};
 
 function App() {
   // Always start with showing the intro animation
@@ -73,9 +39,6 @@ function App() {
       }
     })
   };
-
-  // Initialize user tracking
-  const { getStats } = useUserTracking();
 
   // Show animated intro
   if (showIntro) {
