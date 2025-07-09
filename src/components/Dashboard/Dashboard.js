@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { getAnalyticsData, getRecentSessions, getVisitStats, getSessionUpdates, getAllSessionData } from '../../services/firebase';
+import { getAnalyticsData, getVisitStats, getAllSessionData } from '../../services/firebase';
 import { googleAnalytics } from '../../services/googleAnalytics';
 import './Dashboard.css';
 
 const Dashboard = () => {
-  const [analytics, setAnalytics] = useState({});
   const [sessions, setSessions] = useState({});
   const [visitStats, setVisitStats] = useState({ total: 0, daily: {} });
   const [loading, setLoading] = useState(true);
@@ -13,6 +12,27 @@ const Dashboard = () => {
   const [authError, setAuthError] = useState('');
   const [lastUpdated, setLastUpdated] = useState(null);
   const [autoRefresh, setAutoRefresh] = useState(false);
+
+  const fetchDashboardData = useCallback(async () => {
+    setLoading(true);
+    try {
+      const [allSessionsData, visitsData] = await Promise.all([
+        getAnalyticsData(),
+        getAllSessionData(30), // Get merged session data with duration
+        getVisitStats()
+      ]);
+
+      setSessions(allSessionsData);
+      setVisitStats(visitsData);
+      setLastUpdated(new Date());
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+      googleAnalytics.trackError(error);
+      setAuthError('Failed to load dashboard data. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     // Check if already authenticated in session
@@ -31,7 +51,7 @@ const Dashboard = () => {
         setAutoRefresh(false);
       }
     };
-  }, []);
+  }, [autoRefresh, fetchDashboardData]);
 
   // Auto-refresh functionality
   useEffect(() => {
@@ -44,7 +64,7 @@ const Dashboard = () => {
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [autoRefresh, isAuthenticated]);
+  }, [autoRefresh, isAuthenticated, fetchDashboardData]);
 
   const handleAuth = (e) => {
     e.preventDefault();
@@ -68,28 +88,6 @@ const Dashboard = () => {
     setPassword('');
     googleAnalytics.trackEvent('logout', 'Security');
   };
-
-  const fetchDashboardData = useCallback(async () => {
-    setLoading(true);
-    try {
-      const [analyticsData, allSessionsData, visitsData] = await Promise.all([
-        getAnalyticsData(),
-        getAllSessionData(30), // Get merged session data with duration
-        getVisitStats()
-      ]);
-
-      setAnalytics(analyticsData);
-      setSessions(allSessionsData);
-      setVisitStats(visitsData);
-      setLastUpdated(new Date());
-    } catch (error) {
-      console.error('Error fetching dashboard data:', error);
-      googleAnalytics.trackError(error);
-      setAuthError('Failed to load dashboard data. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  }, []);
 
   const toggleAutoRefresh = () => {
     setAutoRefresh(!autoRefresh);
