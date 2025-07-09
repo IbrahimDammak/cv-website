@@ -70,18 +70,47 @@ cv-website/
 └── README.md          # This file
 ```
 
+## 🌐 Deployment
+
+### GitHub Pages
+1. Push your code to a GitHub repository
+2. Go to repository Settings > Pages
+3. Select source branch (usually `main`)
+4. Your site will be available at `https://yourusername.github.io/cv-website`
+
+### Netlify
+1. Connect your GitHub repository to Netlify
+2. Deploy with default settings
+3. Your site will be live with a custom domain
+
+**Troubleshooting Netlify Deployment:**
+
+If you encounter build errors, ensure you have the required files:
+- `package.json` - Defines project dependencies and scripts
+- `netlify.toml` - Netlify configuration for static site deployment
+
+For static HTML sites, use these build settings in Netlify:
+- Build command: `echo 'Static site - no build required'`
+- Publish directory: `.` (root directory)
+
+### Other Hosting Options
+- Vercel
+- Firebase Hosting
+- Traditional web hosting services
+
 ## 🚀 Getting Started
 
 ### Prerequisites
 
 - A modern web browser
 - Basic understanding of HTML, CSS, and JavaScript (for customization)
+- Node.js (optional, for local development server)
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/IbrahimDammak/cv-website.git
+git clone https://github.com/yourusername/cv-website.git
 ```
 
 2. Navigate to the project directory:
@@ -89,8 +118,16 @@ git clone https://github.com/IbrahimDammak/cv-website.git
 cd cv-website
 ```
 
-3. Open `index.html` in your preferred web browser or use a local server:
+3. (Optional) Install dependencies for local development:
 ```bash
+npm install
+```
+
+4. Open `index.html` in your preferred web browser or use a local server:
+```bash
+# Using npm script
+npm start
+
 # Using Python (Python 3)
 python -m http.server 8000
 
@@ -98,7 +135,7 @@ python -m http.server 8000
 npx http-server
 ```
 
-4. Visit `http://localhost:8000` in your browser
+5. Visit `http://localhost:8000` in your browser
 
 ## 🎨 Customization
 
@@ -119,23 +156,6 @@ npx http-server
 - **Projects**: Portfolio showcase
 - **Education**: Academic background
 - **Contact**: Contact information and social links
-
-## 🌐 Deployment
-
-### GitHub Pages
-1. Push your code to a GitHub repository
-2. Go to repository Settings > Pages
-3. Select source branch (usually `main`)
-
-### Netlify
-1. Connect your GitHub repository to Netlify
-2. Deploy with default settings
-3. Your site will be live with a custom domain
-
-### Other Hosting Options
-- Vercel
-- Firebase Hosting
-- Traditional web hosting services
 
 ## 📱 Browser Support
 
