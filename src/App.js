@@ -41,7 +41,7 @@ function App() {
     return (
       <div className="bg-cv-cream min-h-screen p-5">
         <motion.h1 
-          className="text-4xl font-bold text-orange-500 mb-5 text-center font-cal"
+          className="text-4xl font-bold text-cv-green mb-5 font-cal"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}

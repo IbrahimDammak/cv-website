@@ -108,7 +108,7 @@ export default function VisitorCounter() {
         </p>
         <div className="mt-3 flex flex-wrap gap-3">
           <a 
-            href="mailto:contact@ibrahimdammak.com" 
+            href="mailto:contactdammakibrahim@gmail.com" 
             className="text-cv-light-green hover:underline inline-flex items-center"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -117,7 +117,7 @@ export default function VisitorCounter() {
             Email
           </a>
           <a 
-            href="https://linkedin.com/in/ibrahimdammak" 
+            href="https://www.linkedin.com/in/ibrahim-damak/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-cv-light-green hover:underline inline-flex items-center"

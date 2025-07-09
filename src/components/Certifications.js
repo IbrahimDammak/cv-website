@@ -1,6 +1,6 @@
 export default function Certifications() {
   return (
-    <div className="bg-cv-light-green text-cv-dark p-6 rounded-lg shadow-lg h-full">
+    <div className="bg-cv-light-green text-cv-dark p-3 md:p-4 rounded-lg shadow-lg h-full">
       <h2 className="text-xl font-bold mb-4 text-cv-dark">CERTIFICATIONS</h2>
       <ul className="space-y-2 text-sm">
         <li className="flex items-start">
