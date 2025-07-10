@@ -15,7 +15,7 @@ export default function VisitorCounter() {
         const config = getFirebaseConfig();
         
         if (!config || !config.databaseURL) {
-          console.error('Firebase config missing or incomplete');
+          // console.error('Firebase config missing or incomplete');
           if (isMounted) {
             setError('Configuration issue');
             setIsLoading(false);
@@ -27,13 +27,13 @@ export default function VisitorCounter() {
         const { initializeApp } = await import('firebase/app');
         const { getDatabase, ref, onValue, increment, update } = await import('firebase/database');
         
-        console.log('Firebase modules loaded');
+        // console.log('Firebase modules loaded');
         
         // Initialize Firebase
         const app = initializeApp(config);
         const database = getDatabase(app);
         
-        console.log('Firebase initialized');
+        // console.log('Firebase initialized');
         
         // Function to increment the count
         const incrementCount = async () => {
@@ -41,25 +41,25 @@ export default function VisitorCounter() {
             await update(ref(database), {
               visitorCount: increment(1)
             });
-            console.log('Visitor count incremented');
+            // console.log('Visitor count incremented');
           } catch (err) {
-            console.error('Error incrementing visitor count:', err);
+            // console.error('Error incrementing visitor count:', err);
           }
         };
 
         // Get the current count
         const visitorCountRef = ref(database, 'visitorCount');
         
-        console.log('Setting up listener');
+        // console.log('Setting up listener');
         onValue(visitorCountRef, (snapshot) => {
           const data = snapshot.val();
-          console.log('Visitor count received:', data);
+          // console.log('Visitor count received:', data);
           if (isMounted) {
             setVisitorCount(data || 0);
             setIsLoading(false);
           }
         }, (err) => {
-          console.error('Error fetching visitor count:', err);
+          // console.error('Error fetching visitor count:', err);
           if (isMounted) {
             setError('Failed to fetch visitor count');
             setIsLoading(false);
@@ -72,7 +72,7 @@ export default function VisitorCounter() {
           sessionStorage.setItem('visited', 'true');
         }
       } catch (err) {
-        console.error('Error setting up visitor counter:', err);
+        // console.error('Error setting up visitor counter:', err);
         if (isMounted) {
           setError('Error initializing counter');
           setIsLoading(false);
