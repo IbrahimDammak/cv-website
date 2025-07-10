@@ -47,7 +47,7 @@ body {
 html, body, #root {
   height: auto;
   min-height: 100vh;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
 }
 
@@ -57,6 +57,18 @@ html, body, #root {
     overflow-y: auto;
     height: auto;
     min-height: 100vh;
+  }
+}
+
+/* Hide scrollbars for webkit browsers - desktop only */
+@media (min-width: 993px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbars for Firefox - desktop only */
+  html {
+    scrollbar-width: none;
   }
 }
 
@@ -243,17 +255,17 @@ html {
     grid-row: 2; /* Second item */
   }
   
+  .education-section {
+    grid-column: 1;
+    grid-row: 3; /* Third item - moved before experience */
+  }
+  
   .experience-section {
     grid-column: 1;
-    grid-row: 3; /* Third item */
+    grid-row: 4; /* Fourth item - moved after education */
   }
   
   .github-activity-section {
-    grid-column: 1;
-    grid-row: 4; /* Fourth item */
-  }
-  
-  .education-section {
     grid-column: 1;
     grid-row: 5; /* Fifth item */
   }

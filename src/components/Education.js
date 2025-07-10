@@ -5,7 +5,7 @@ export default function Education() {
       <ul className="space-y-3">
         <li className="leading-relaxed">
           <strong className="text-cv-cream">Licence en Informatique de Gestion</strong><br />
-          <span className="text-sm">FSEG Sfax — en cours</span>
+          <span className="text-sm">FSEG Sfax — 2025</span>
         </li>
         <li className="leading-relaxed">
           <strong className="text-cv-cream">Baccalauréat</strong><br />
