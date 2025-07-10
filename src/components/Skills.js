@@ -1,6 +1,6 @@
 export default function Skills() {
   return (
-    <div className="bg-cv-green text-cv-cream p-3 md:p-4 rounded-lg shadow-lg h-full flex flex-col">
+    <div className="bg-cv-light-green text-cv-cream p-3 md:p-4 rounded-lg shadow-lg h-full flex flex-col">
       <h2 className="text-base md:text-lg font-bold mb-1 md:mb-2 text-cv-cream">COMPÉTENCES</h2>
       <div className="content-container flex-grow text-xs md:text-sm">
         <ul className="space-y-1 md:space-y-2">
