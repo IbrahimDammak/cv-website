@@ -33,11 +33,23 @@ function App() {
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.5,
-        delay: custom * 0.1, 
+        duration: 0.6,
+        delay: custom * 0.2, 
         ease: "easeOut"
       }
     })
+  };
+
+  // Container variants for staggered children
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
   };
 
   // Show animated intro
@@ -63,13 +75,16 @@ function App() {
                 Hi my name is Ibrahim Dammak
               </motion.h1>
               
-              <div className="cv-grid w-full">
+              <motion.div 
+                className="cv-grid w-full"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
                 {/* Profile Image */}
                 <motion.div 
                   className="profile-img"
                   variants={gridItemVariants}
-                  initial="hidden"
-                  animate="visible"
                   custom={0}
                 >
                   <ProfileImages position="top" />
@@ -78,8 +93,6 @@ function App() {
                 <motion.div 
                   className="profile-section"
                   variants={gridItemVariants}
-                  initial="hidden"
-                  animate="visible"
                   custom={1}
                 >
                   <Profile />
@@ -88,8 +101,6 @@ function App() {
                 <motion.div 
                   className="experience-section"
                   variants={gridItemVariants}
-                  initial="hidden"
-                  animate="visible"
                   custom={2}
                 >
                   <Experience />
@@ -99,8 +110,6 @@ function App() {
                 <motion.div 
                   className="github-activity-section"
                   variants={gridItemVariants}
-                  initial="hidden"
-                  animate="visible"
                   custom={3}
                 >
                   <GitHubActivity />
@@ -109,8 +118,6 @@ function App() {
                 <motion.div 
                   className="education-section"
                   variants={gridItemVariants}
-                  initial="hidden"
-                  animate="visible"
                   custom={4}
                 >
                   <Education />
@@ -119,8 +126,6 @@ function App() {
                 <motion.div 
                   className="skills-section"
                   variants={gridItemVariants}
-                  initial="hidden"
-                  animate="visible"
                   custom={5}
                 >
                   <Skills />
@@ -129,8 +134,6 @@ function App() {
                 <motion.div 
                   className="certifications-section"
                   variants={gridItemVariants}
-                  initial="hidden"
-                  animate="visible"
                   custom={6}
                 >
                   <Certifications />
@@ -140,13 +143,11 @@ function App() {
                 <motion.div 
                   className="visitor-counter-section"
                   variants={gridItemVariants}
-                  initial="hidden"
-                  animate="visible"
                   custom={7}
                 >
                   <VisitorCounter />
                 </motion.div>
-              </div>
+              </motion.div>
 
               
             </div>
