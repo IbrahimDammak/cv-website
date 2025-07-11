@@ -93,14 +93,14 @@ html {
 /* Grid item placements with smaller image */
 .profile-img {
   grid-column: 1;
-  grid-row: 1 / span 3;
+  grid-row: 1 / span 4; /* Span 4 rows instead of 3 */
   height: auto;
-  min-height: 45vh; /* Reduced from 60vh */
-  max-height: 69vh; /* Reduced from 80vh */
+  min-height: 45vh;
+  max-height: 85vh; /* Increased slightly for 4 rows */
 }
 
 .profile-section {
-  grid-column: 2;
+  grid-column: 2 /span 2;
   grid-row: 1;
   height: auto;
 }
@@ -112,37 +112,40 @@ html {
 }
 
 .github-activity-section {
-  grid-column: 2;
+  grid-column: 2 / span 2;
   grid-row: 3;
   height: auto;
 }
 
-/* Visitor counter aligns at bottom with other elements */
-.visitor-counter-section {
-  grid-column: 1; /* Span full width of grid (from first to last column) */
-  grid-row: 3;
-  margin-top: 0;
-
-  align-self: end;
-  height: auto;
-  display: block;
-}
-
-/* Education, Skills, Certifications placements */
-.education-section {
-  grid-column: 3;
-  grid-row: 1;
-  height: auto;
-}
-
-.skills-section {
+/* Projects section placement */
+.projects-section {
   grid-column: 3;
   grid-row: 2;
   height: auto;
 }
 
+/* Visitor counter aligns at bottom with other elements */
+.visitor-counter-section {
+  grid-column: 1;
+  grid-row: 3;
+  margin-top: 6vh;
+}
+
+/* Education, Skills, Certifications placements */
+.education-section {
+  grid-column: 4;
+  grid-row: 1;
+  height: auto;
+}
+
+.skills-section {
+  grid-column: 4;
+  grid-row: 2;
+  height: auto;
+}
+
 .certifications-section {
-  grid-column: 3;
+  grid-column: 4;
   grid-row: 3;
   height: auto;
 }
@@ -265,24 +268,29 @@ html {
     grid-row: 4; /* Fourth item - moved after education */
   }
   
+  .projects-section {
+    grid-column: 1;
+    grid-row: 5; /* After experience section */
+  }
+  
   .github-activity-section {
     grid-column: 1;
-    grid-row: 5; /* Fifth item */
+    grid-row: 6; /* Moved down */
   }
   
   .skills-section {
     grid-column: 1;
-    grid-row: 6; /* Sixth item */
+    grid-row: 7; /* Moved down */
   }
   
   .certifications-section {
     grid-column: 1;
-    grid-row: 7; /* Seventh item */
+    grid-row: 8; /* Moved down */
   }
   
   .visitor-counter-section {
     grid-column: 1;
-    grid-row: 8; /* Last item */
+    grid-row: 9; /* Last item */
     align-self: center;
   }
   

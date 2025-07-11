@@ -12,6 +12,7 @@ import Skills from './components/Skills';
 import ProfileImages from './components/ProfileImages';
 import GitHubActivity from './components/GitHubActivity';
 import VisitorCounter from './components/VisitorCounter';
+import Projects from './components/Projects';
 import Dashboard from './components/Dashboard/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
@@ -106,11 +107,19 @@ function App() {
                   <Experience />
                 </motion.div>
                 
+                <motion.div 
+                  className="projects-section"
+                  variants={gridItemVariants}
+                  custom={3}
+                >
+                  <Projects />
+                </motion.div>
+                
                 {/* GitHub Activity Section */}
                 <motion.div 
                   className="github-activity-section"
                   variants={gridItemVariants}
-                  custom={3}
+                  custom={4}
                 >
                   <GitHubActivity />
                 </motion.div>
@@ -118,7 +127,7 @@ function App() {
                 <motion.div 
                   className="education-section"
                   variants={gridItemVariants}
-                  custom={4}
+                  custom={5}
                 >
                   <Education />
                 </motion.div>
@@ -126,7 +135,7 @@ function App() {
                 <motion.div 
                   className="skills-section"
                   variants={gridItemVariants}
-                  custom={5}
+                  custom={6}
                 >
                   <Skills />
                 </motion.div>
@@ -134,7 +143,7 @@ function App() {
                 <motion.div 
                   className="certifications-section"
                   variants={gridItemVariants}
-                  custom={6}
+                  custom={7}
                 >
                   <Certifications />
                 </motion.div>
@@ -143,7 +152,7 @@ function App() {
                 <motion.div 
                   className="visitor-counter-section"
                   variants={gridItemVariants}
-                  custom={7}
+                  custom={8}
                 >
                   <VisitorCounter />
                 </motion.div>
